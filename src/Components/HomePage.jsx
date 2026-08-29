@@ -7,8 +7,8 @@ function HomePage() {
     return (
         <>
             <TopBar />
-            <div class="home-page">
-                <div class="products-grid">
+            <div className="home-page">
+                <div className="products-grid">
                     {products.map((product) => 
                     <Product key={product.id} product={product} />
                 )}

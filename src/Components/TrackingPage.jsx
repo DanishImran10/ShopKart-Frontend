@@ -1,29 +1,39 @@
 import TopBar from "./TopBar"
+import {Link, useParams} from "react-router"
+import orders from "../assets/orders.js"
+import products from "../assets/products.js"
+import { convertToDateFromMs } from "../utils/convertToDateFromMs"
 import "./TrackingPage.css"
 
 function TrackingPage() {
+    const { orderId, productId } = useParams();
+
+    const order = orders.find(order => order.id === orderId);
+    const productDetails = order.products.find(product => product.productId === productId);
+    const product = products.find(product => product.id === productId);
+
     return (
         <>
             <TopBar />
             <div className="tracking-page">
                 <div className="order-tracking">
-                    <a className="back-to-orders-link link-primary" href="orders.html">
+                    <Link className="back-to-orders-link link-primary" to="/orders">
                         View all orders
-                    </a>
+                    </Link>
 
                     <div className="delivery-date">
-                        Arriving on Monday, June 13
+                        {convertToDateFromMs(productDetails.estimatedDeliveryTimeMs)}
                     </div>
 
                     <div className="product-info">
-                        Black and Gray Athletic Cotton Socks - 6 Pairs
+                        {product.name}
                     </div>
 
                     <div className="product-info">
-                        Quantity: 1
+                        {`Quantity: ${productDetails.quantity}`}
                     </div>
 
-                    <img className="product-image" src="images/products/athletic-cotton-socks-6-pairs.jpg" />
+                    <img className="product-image" src={`../../${product.image}`} alt={product.name} />
 
                     <div className="progress-labels-container">
                         <div className="progress-label">
