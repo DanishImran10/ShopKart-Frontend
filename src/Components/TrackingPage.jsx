@@ -1,20 +1,17 @@
 import TopBar from "./TopBar"
 import {Link, useParams} from "react-router"
-import orders from "../assets/orders.js"
-import products from "../assets/products.js"
 import { convertToDateFromMs } from "../utils/convertToDateFromMs"
 import "./TrackingPage.css"
 
-function TrackingPage() {
+function TrackingPage(props) {
     const { orderId, productId } = useParams();
 
-    const order = orders.find(order => order.id === orderId);
-    const productDetails = order.products.find(product => product.productId === productId);
-    const product = products.find(product => product.id === productId);
+    const order = props.orders.find(order => order._id === orderId);
+    const productDetails = order.products.find(product => product.product._id === productId);
 
     return (
         <>
-            <TopBar />
+            <TopBar cart={props.cart} />
             <div className="tracking-page">
                 <div className="order-tracking">
                     <Link className="back-to-orders-link link-primary" to="/orders">
@@ -26,14 +23,14 @@ function TrackingPage() {
                     </div>
 
                     <div className="product-info">
-                        {product.name}
+                        {productDetails.product.name}
                     </div>
 
                     <div className="product-info">
                         {`Quantity: ${productDetails.quantity}`}
                     </div>
 
-                    <img className="product-image" src={`../../${product.image}`} alt={product.name} />
+                    <img className="product-image" src={`../../${productDetails.product.image}`} alt={productDetails.product.name} />
 
                     <div className="progress-labels-container">
                         <div className="progress-label">

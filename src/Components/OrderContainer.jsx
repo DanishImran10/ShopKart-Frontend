@@ -9,7 +9,7 @@ function OrderContainer(props) {
 
             <div className="order-details-grid">
                 {props.order.products.map((product) => 
-                <OrderProduct key={product.productId} order={props.order} productDetails={product} />)}
+                <OrderProduct key={product.product._id} order={props.order} productDetails={product} />)}
             </div>
         </div>
     )

@@ -1,12 +1,11 @@
 import CheckoutHeader from "./CheckoutHeader"
 import CartItem from "./CartItem"
-import cart from "../assets/cart"
 import "./CheckoutPage.css"
 import PaymentSummary from "./PaymentSummary"
 import { itemsInCart } from "../utils/itemsInCart"
 
-function CheckoutPage() {
-    const cartQuantity = itemsInCart(cart)
+function CheckoutPage(props) {
+    const cartQuantity = itemsInCart(props.cart)
     
     return (
         <>
@@ -16,7 +15,7 @@ function CheckoutPage() {
 
                 <div className="checkout-grid">
                     <div className="order-summary">
-                        {cart.map((item) => <CartItem key={item.productId} item={item} />)}
+                        {props.cart.map((item) => <CartItem key={item.product._id} item={item} />)}
                     </div>
 
                     <PaymentSummary quantity={cartQuantity} />

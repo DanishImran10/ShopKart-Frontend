@@ -18,7 +18,7 @@ function OrderHeader(props) {
 
                 <div className="order-header-right-section">
                     <div className="order-header-label">Order ID:</div>
-                    <div>{props.order.id}</div>
+                    <div>{props.order._id}</div>
                 </div>
             </div>
     )

@@ -1,9 +1,8 @@
 import {Link} from "react-router"
 import "./TopBar.css"
 import { itemsInCart } from "../utils/itemsInCart"
-import cart from "../assets/cart.js"
 
-function TopBar() {
+function TopBar(props) {
     return (
         <div className="header">
             <div className="left-section">
@@ -31,7 +30,7 @@ function TopBar() {
 
                 <Link className="cart-link header-link" to="/checkout">
                     <img className="cart-icon" src="../../images/icons/cart-icon.png" />
-                    <div className="cart-quantity">{itemsInCart(cart)}</div>
+                    <div className="cart-quantity">{itemsInCart(props.cart)}</div>
                     <div className="cart-text">Cart</div>
                 </Link>
             </div>

@@ -1,10 +1,7 @@
-import products from "../assets/products.js"
 import {displayPrice} from "../utils/displayPrice"
 import "./CheckoutPage.css"
 
 function CartItem(props) {
-    const product = products.find(p => p.id === props.item.productId);
-
     return (
         <div className="cart-item-container">
             <div className="delivery-date">
@@ -13,14 +10,14 @@ function CartItem(props) {
 
             <div className="cart-item-details-grid">
                 <img className="product-image"
-                    src={product.image} />
+                    src={props.item.product.image} />
 
                 <div className="cart-item-details">
                     <div className="product-name">
-                        {product.name}
+                        {props.item.product.name}
                     </div>
                     <div className="product-price">
-                        {displayPrice(product.priceCents)}
+                        {displayPrice(props.item.product.priceCents)}
                     </div>
                     <div className="product-quantity">
                         <span>
@@ -42,7 +39,7 @@ function CartItem(props) {
                     <div className="delivery-option">
                         <input type="radio" defaultChecked
                             className="delivery-option-input"
-                            name={`delivery-option-${product.id}`} />
+                            name={`delivery-option-${props.item.product._id}`} />
                         <div>
                             <div className="delivery-option-date">
                                 Tuesday, June 21
@@ -55,7 +52,7 @@ function CartItem(props) {
                     <div className="delivery-option">
                         <input type="radio"
                             className="delivery-option-input"
-                            name={`delivery-option-${product.id}`} />
+                            name={`delivery-option-${props.item.product._id}`} />
                         <div>
                             <div className="delivery-option-date">
                                 Wednesday, June 15
@@ -68,7 +65,7 @@ function CartItem(props) {
                     <div className="delivery-option">
                         <input type="radio"
                             className="delivery-option-input"
-                            name={`delivery-option-${product.id}`} />
+                            name={`delivery-option-${props.item.product._id}`} />
                         <div>
                             <div className="delivery-option-date">
                                 Monday, June 13

@@ -1,16 +1,15 @@
 import TopBar from "./TopBar";
 import Product from "./Product";
-import products from "../assets/products.js"
 import "./HomePage.css"
 
-function HomePage() {
+function HomePage(props) {
     return (
         <>
-            <TopBar />
+            <TopBar cart={props.cart} />
             <div className="home-page">
                 <div className="products-grid">
-                    {products.map((product) => 
-                    <Product key={product.id} product={product} />
+                    {props.products.map((product) => 
+                    <Product key={product._id} product={product} />
                 )}
                 </div>
             </div>
