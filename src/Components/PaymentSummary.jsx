@@ -1,5 +1,6 @@
 import "./CheckoutPage.css"
 import { displayPrice } from "../utils/displayPrice.js"
+import axios from "axios"
 
 function PaymentSummary(props) {
     function calculatePayment() {
@@ -17,6 +18,33 @@ function PaymentSummary(props) {
             taxCost: (itemCost + shippingCost) * 0.1,
             totalCost: itemCost + shippingCost + ((itemCost + shippingCost) * 0.1)
         }
+    }
+
+    async function placeOrder() {
+        if (props.cart.length === 0)
+            return
+
+        const order = {
+            orderTimeMs: Date.now(),
+            totalCostCents: payment.totalCost,
+            products: []
+        }
+
+        for (const item of props.cart)
+        {
+            const productData = {
+                product: item.product._id,
+                quantity: item.quantity,
+                estimatedDeliveryTimeMs: order.orderTimeMs + 
+                    props.deliveryOptions[item.deliveryOptionId - 1].deliveryDays * 86400000
+            }
+            
+            order.products.push(productData)
+        }
+
+        await axios.post('http://localhost:5000/api/orders', order)
+        await props.loadCart()
+        await props.loadOrders()
     }
 
     if (props.deliveryOptions.length === 0)
@@ -55,7 +83,8 @@ function PaymentSummary(props) {
                 <div className="payment-summary-money">{`${displayPrice(payment.totalCost)}`}</div>
             </div>
 
-            <button className="place-order-button button-primary">
+            <button className="place-order-button button-primary" 
+                onClick={placeOrder}>
                 Place your order
             </button>
         </div>

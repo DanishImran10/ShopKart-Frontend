@@ -33,7 +33,8 @@ function CheckoutPage(props) {
                     </div>
 
                     <PaymentSummary quantity={cartQuantity} cart={props.cart}
-                        deliveryOptions={deliveryOptions} />
+                        deliveryOptions={deliveryOptions} loadCart={props.loadCart}
+                        loadOrders={props.loadOrders} />
                 </div>
             </div>
         </>
