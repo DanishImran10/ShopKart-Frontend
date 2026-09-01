@@ -1,6 +1,21 @@
 import { displayPrice } from "../utils/displayPrice.js"
+import { useState } from "react"
+import axios from "axios"
 
 function Product(props) {
+    const [selectedQuantity, setSelectedQuantity] = useState(1)
+
+    async function addItemToCart()
+    {
+        const item = {
+            productId: props.product._id,
+            quantity: selectedQuantity,
+        }
+
+        await axios.post("http://localhost:5000/api/cart", item)
+        await props.loadCart()
+    }
+
     return (
         <div className="product-container">
             <div className="product-image-container">
@@ -25,7 +40,7 @@ function Product(props) {
             </div>
 
             <div className="product-quantity-container">
-                <select>
+                <select value={selectedQuantity} onChange={(e) => setSelectedQuantity(Number(e.target.value))}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -46,7 +61,9 @@ function Product(props) {
                 Added
             </div>
 
-            <button className="add-to-cart-button button-primary">
+            <button className="add-to-cart-button button-primary"
+                onClick={addItemToCart}
+            >
                 Add to Cart
             </button>
         </div>
