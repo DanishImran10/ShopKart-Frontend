@@ -1,11 +1,35 @@
+import { useState } from "react"
 import {displayPrice} from "../utils/displayPrice"
 import "./CheckoutPage.css"
+import DeliveryOption from "./DeliveryOption"
+import { getDate } from "../utils/getDate.js"
+import axios from "axios"
 
 function CartItem(props) {
+    const [isUpdating, setIsUpdating] = useState(false)
+    const [quantity, setQuantity] = useState(props.item.quantity)
+
+    const updateCartItem = async(update) => {
+        await axios.put(`http://localhost:5000/api/cart/${props.item._id}`, update)
+        await props.loadCart()
+    }
+
+    const updateClicked = async() => {
+        if (isUpdating)
+            await updateCartItem({ quantity })
+
+        setIsUpdating(() => !isUpdating)
+    }
+
+    const deleteClicked = async() => {
+        await axios.delete(`http://localhost:5000/api/cart/${props.item._id}`)
+        await props.loadCart()
+    }
+
     return (
         <div className="cart-item-container">
             <div className="delivery-date">
-                Delivery date: Tuesday, June 21
+                {getDate(props.deliveryOptions[props.item.deliveryOptionId - 1]?.deliveryDays)}
             </div>
 
             <div className="cart-item-details-grid">
@@ -20,13 +44,18 @@ function CartItem(props) {
                         {displayPrice(props.item.product.priceCents)}
                     </div>
                     <div className="product-quantity">
-                        <span>
-                            Quantity: <span className="quantity-label">{props.item.quantity}</span>
-                        </span>
-                        <span className="update-quantity-link link-primary">
+                        {
+                            isUpdating ? 
+                            <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} 
+                                onKeyDown={(e) => e.key === "Enter" && updateClicked()}/> : (
+                            <span>
+                                Quantity: <span className="quantity-label">{props.item.quantity}</span>
+                            </span>)
+                        }
+                        <span className="update-quantity-link link-primary" onClick={updateClicked}>
                             Update
                         </span>
-                        <span className="delete-quantity-link link-primary">
+                        <span className="delete-quantity-link link-primary" onClick={deleteClicked}>
                             Delete
                         </span>
                     </div>
@@ -36,45 +65,12 @@ function CartItem(props) {
                     <div className="delivery-options-title">
                         Choose a delivery option:
                     </div>
-                    <div className="delivery-option">
-                        <input type="radio" defaultChecked
-                            className="delivery-option-input"
-                            name={`delivery-option-${props.item.product._id}`} />
-                        <div>
-                            <div className="delivery-option-date">
-                                Tuesday, June 21
-                            </div>
-                            <div className="delivery-option-price">
-                                FREE Shipping
-                            </div>
-                        </div>
-                    </div>
-                    <div className="delivery-option">
-                        <input type="radio"
-                            className="delivery-option-input"
-                            name={`delivery-option-${props.item.product._id}`} />
-                        <div>
-                            <div className="delivery-option-date">
-                                Wednesday, June 15
-                            </div>
-                            <div className="delivery-option-price">
-                                $4.99 - Shipping
-                            </div>
-                        </div>
-                    </div>
-                    <div className="delivery-option">
-                        <input type="radio"
-                            className="delivery-option-input"
-                            name={`delivery-option-${props.item.product._id}`} />
-                        <div>
-                            <div className="delivery-option-date">
-                                Monday, June 13
-                            </div>
-                            <div className="delivery-option-price">
-                                $9.99 - Shipping
-                            </div>
-                        </div>
-                    </div>
+                    {props.deliveryOptions.map((deliveryOption) => 
+                        <DeliveryOption key={deliveryOption._id}
+                        deliveryOption={deliveryOption} productId={props.item.product._id} 
+                        selected={deliveryOption.index === props.item.deliveryOptionId}
+                        updateCartItem={updateCartItem}
+                        />)}
                 </div>
             </div>
         </div>
