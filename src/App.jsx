@@ -18,20 +18,24 @@ function App() {
     setProducts(result.data)
   }
 
-  const loadCart = async() => {
+  const loadCart = async () => {
     const result = await axios.get(`${BASE_URL}/api/cart`)
     setCart(result.data)
   }
 
-  const loadOrders = async() => {
+  const loadOrders = async () => {
     const result = await axios.get(`${BASE_URL}/api/orders`)
     setOrders(result.data)
   }
 
-  useEffect(() => async() => {
-    await loadProducts()
-    await loadCart()
-    await loadOrders()
+  useEffect(() => {
+    const fetchData = async () => {
+      await loadProducts()
+      await loadCart()
+      await loadOrders()
+    }
+
+    fetchData()
   }, [])
 
   return (
