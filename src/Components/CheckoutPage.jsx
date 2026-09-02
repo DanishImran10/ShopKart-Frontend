@@ -15,8 +15,12 @@ function CheckoutPage(props) {
         setDeliveryOptions(res.data)
     }
 
-    useEffect(() => async () => {
-        await loadDeliveryOptions()
+    useEffect(() => {
+        const loadData = async () => {
+            await loadDeliveryOptions()
+        }
+
+        loadData()
     }, [])
 
     const cartQuantity = itemsInCart(props.cart)
