@@ -6,21 +6,12 @@ function TopBar(props) {
     return (
         <div className="header">
             <div className="left-section">
-                <Link to="/" className="header-link">
+                <Link to="/">
                     <img className="logo"
-                        src="../../images/logo-white.png" />
-                    <img className="mobile-logo"
-                        src="../../images/mobile-logo-white.png" />
+                        src="../../images/shopkart-logo.png" />
                 </Link>
             </div>
 
-            <div className="middle-section">
-                <input className="search-bar" type="text" placeholder="Search" />
-
-                <button className="search-button">
-                    <img className="search-icon" src="../../images/icons/search-icon.png" />
-                </button>
-            </div>
 
             <div className="right-section">
                 <Link className="orders-link header-link" to="/orders">

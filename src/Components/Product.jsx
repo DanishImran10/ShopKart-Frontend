@@ -4,9 +4,13 @@ import axios from "axios"
 
 function Product(props) {
     const [selectedQuantity, setSelectedQuantity] = useState(1)
+    const [addedToCart, setAddedToCart] = useState(false)
 
     async function addItemToCart()
     {
+        setAddedToCart(true)
+        setTimeout(() => setAddedToCart(false), 2000)
+
         const item = {
             productId: props.product._id,
             quantity: selectedQuantity,
@@ -56,7 +60,7 @@ function Product(props) {
 
             <div className="product-spacer"></div>
 
-            <div className="added-to-cart">
+            <div className={`added-to-cart ${addedToCart ? "added-opacity1" : "added-opacity0"}`}>
                 <img src="../images/icons/checkmark.png" />
                 Added
             </div>
