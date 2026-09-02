@@ -6,6 +6,7 @@ import TrackingPage from './Components/TrackingPage'
 import CheckoutPage from './Components/CheckoutPage'
 import { useState, useEffect } from 'react'
 import axios from "axios"
+import BASE_URL from './BaseUrl.js'
 
 function App() {
   const [products, setProducts] = useState([])
@@ -13,17 +14,17 @@ function App() {
   const [orders, setOrders] = useState([])
 
   const loadProducts = async () => {
-    const result = await axios.get('http://localhost:5000/api/products')
+    const result = await axios.get(`${BASE_URL}/api/products`)
     setProducts(result.data)
   }
 
   const loadCart = async() => {
-    const result = await axios.get('http://localhost:5000/api/cart')
+    const result = await axios.get(`${BASE_URL}/api/cart`)
     setCart(result.data)
   }
 
   const loadOrders = async() => {
-    const result = await axios.get('http://localhost:5000/api/orders')
+    const result = await axios.get(`${BASE_URL}/api/orders`)
     setOrders(result.data)
   }
 

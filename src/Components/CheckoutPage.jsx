@@ -5,12 +5,13 @@ import PaymentSummary from "./PaymentSummary"
 import { itemsInCart } from "../utils/itemsInCart"
 import axios from "axios"
 import { useState, useEffect } from "react"
+import BASE_URL from "../BaseUrl.js"
 
 function CheckoutPage(props) {
     const [deliveryOptions, setDeliveryOptions] = useState([])
 
     const loadDeliveryOptions = async () => {
-        const res = await axios.get('http://localhost:5000/api/deliveryOptions')
+        const res = await axios.get(`${BASE_URL}/api/deliveryOptions`)
         setDeliveryOptions(res.data)
     }
 

@@ -1,8 +1,12 @@
 import "./CheckoutPage.css"
 import { displayPrice } from "../utils/displayPrice.js"
 import axios from "axios"
+import BASE_URL from "../BaseUrl.js"
+import { useNavigate } from "react-router"
 
 function PaymentSummary(props) {
+    const navigate = useNavigate()
+
     function calculatePayment() {
         let itemCost = 0, shippingCost = 0
         for (const item of props.cart)
@@ -42,9 +46,11 @@ function PaymentSummary(props) {
             order.products.push(productData)
         }
 
-        await axios.post('http://localhost:5000/api/orders', order)
+        await axios.post(`${BASE_URL}/api/orders`, order)
         await props.loadCart()
         await props.loadOrders()
+
+        navigate("/orders")
     }
 
     if (props.deliveryOptions.length === 0)

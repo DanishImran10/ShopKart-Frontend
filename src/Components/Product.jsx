@@ -1,6 +1,7 @@
 import { displayPrice } from "../utils/displayPrice.js"
 import { useState } from "react"
 import axios from "axios"
+import BASE_URL from "../BaseUrl.js"
 
 function Product(props) {
     const [selectedQuantity, setSelectedQuantity] = useState(1)
@@ -16,7 +17,7 @@ function Product(props) {
             quantity: selectedQuantity,
         }
 
-        await axios.post("http://localhost:5000/api/cart", item)
+        await axios.post(`${BASE_URL}/api/cart`, item)
         await props.loadCart()
     }
 

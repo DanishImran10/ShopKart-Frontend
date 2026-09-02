@@ -3,6 +3,7 @@ import "./HomePage.css"
 import "./OrdersPage.css"
 import OrderContainer from "./OrderContainer"
 import axios from "axios"
+import BASE_URL from "../BaseUrl.js"
 
 function OrdersPage(props) {
     async function checkOrdersStatus() {
@@ -21,7 +22,7 @@ function OrdersPage(props) {
 
             if (allDelivered)
             {
-                await axios.delete(`http://localhost:5000/api/orders/${order._id}`)
+                await axios.delete(`${BASE_URL}/api/orders/${order._id}`)
             }
         }
         await props.loadOrders()

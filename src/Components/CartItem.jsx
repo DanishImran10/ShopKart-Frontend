@@ -4,13 +4,14 @@ import "./CheckoutPage.css"
 import DeliveryOption from "./DeliveryOption"
 import { getDate } from "../utils/getDate.js"
 import axios from "axios"
+import BASE_URL from "../BaseUrl.js"
 
 function CartItem(props) {
     const [isUpdating, setIsUpdating] = useState(false)
     const [quantity, setQuantity] = useState(props.item.quantity)
 
     const updateCartItem = async(update) => {
-        await axios.put(`http://localhost:5000/api/cart/${props.item._id}`, update)
+        await axios.put(`${BASE_URL}/api/cart/${props.item._id}`, update)
         await props.loadCart()
     }
 
@@ -22,7 +23,7 @@ function CartItem(props) {
     }
 
     const deleteClicked = async() => {
-        await axios.delete(`http://localhost:5000/api/cart/${props.item._id}`)
+        await axios.delete(`${BASE_URL}/api/cart/${props.item._id}`)
         await props.loadCart()
     }
 
