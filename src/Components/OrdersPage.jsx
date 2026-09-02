@@ -8,24 +8,25 @@ import BASE_URL from "../BaseUrl.js"
 function OrdersPage(props) {
     async function checkOrdersStatus() {
         const currentTime = Date.now()
-        for (const order of props.orders)
-        {
+        let anyOrderStatusChanged = false
+
+        for (const order of props.orders) {
             let allDelivered = true
-            for (const product of order.products)
-            {
-                if (product.estimatedDeliveryTimeMs > currentTime)
-                {
+            for (const product of order.products) {
+                if (product.estimatedDeliveryTimeMs > currentTime) {
                     allDelivered = false
                     break
                 }
             }
 
-            if (allDelivered)
-            {
+            if (allDelivered) {
                 await axios.delete(`${BASE_URL}/api/orders/${order._id}`)
+                anyOrderStatusChanged = true
             }
         }
-        await props.loadOrders()
+
+        if (anyOrderStatusChanged)
+            await props.loadOrders()
     }
 
     checkOrdersStatus()
@@ -37,7 +38,7 @@ function OrdersPage(props) {
                 <div className="page-title">Your Orders</div>
 
                 <div className="orders-grid">
-                    {props.orders.map((order) => <OrderContainer key={order._id} order={order}/>)}
+                    {props.orders.map((order) => <OrderContainer key={order._id} order={order} />)}
                 </div>
             </div>
         </>
