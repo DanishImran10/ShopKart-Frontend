@@ -2,7 +2,7 @@
 
 A modern and responsive e-commerce web application built using React. This frontend serves as the user interface for browsing products, managing a cart, placing orders, and tracking deliveries in real time through API integration with a backend service.
 
-<img src="./images/homepage.png" alt="Homepage" width="500">
+<img src="https://github.com/DanishImran10/ShopKart/blob/1a32b12e7b3231c805eca33be07d005adc8f9022/images/checkout.jpg" alt="Homepage" width="500">
 ---
 
 ## Features
