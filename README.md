@@ -2,7 +2,7 @@
 
 A modern and responsive e-commerce web application built using React. This frontend serves as the user interface for browsing products, managing a cart, placing orders, and tracking deliveries in real time through API integration with a backend service.
 
-<img src="https://github.com/DanishImran10/ShopKart/blob/1a32b12e7b3231c805eca33be07d005adc8f9022/images/checkout.jpg" alt="Homepage" width="500">
+<img src="https://github.com/DanishImran10/ShopKart/blob/9a6eac5e85fee8eaca4f507ce0160f457e6f1cdd/images/homepage.jpg" alt="Homepage" width="500">
 ---
 
 ## Features
@@ -17,14 +17,14 @@ A modern and responsive e-commerce web application built using React. This front
   * Add/remove items from cart.
   * Real-time cart updates synced with backend.
 
-<img src="./images/checkout.png" alt="Checkout Page" width="500">
+<img src="https://github.com/DanishImran10/ShopKart/blob/9a6eac5e85fee8eaca4f507ce0160f457e6f1cdd/images/checkout.jpg" alt="Checkout Page" width="500">
 
 * **Order Placement & Tracking**:
 
   * Checkout flow for placing orders.
   * Dedicated tracking page using route parameters.
 
-<img src="./images/orders.png" alt="Orders Page" width="500">
+<img src="https://github.com/DanishImran10/ShopKart/blob/9a6eac5e85fee8eaca4f507ce0160f457e6f1cdd/images/orders.jpg" alt="Orders Page" width="500">
 
 * **Client-side Routing**:
 
@@ -56,7 +56,7 @@ A modern and responsive e-commerce web application built using React. This front
   * Clean layout with CSS.
   * Structured rendering using `.map()` and conditional logic.
 
-<img src="./images/tracking.png" alt="Tracking Page" width="500">
+<img src="https://github.com/DanishImran10/ShopKart/blob/9a6eac5e85fee8eaca4f507ce0160f457e6f1cdd/images/tracking.jpg" alt="Tracking Page" width="500">
 
 ---
 
