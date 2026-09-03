@@ -1,7 +1,8 @@
-# ShopKart Frontend
+<img width="1354" height="605" alt="image" src="https://github.com/user-attachments/assets/ce1f86dc-1e39-4044-a5cf-661dea01f115" /># ShopKart Frontend
 
 A modern and responsive e-commerce web application built using React. This frontend serves as the user interface for browsing products, managing a cart, placing orders, and tracking deliveries in real time through API integration with a backend service.
 
+<img src="./images/homepage.png" alt="Homepage" width="500">
 ---
 
 ## Features
@@ -16,10 +17,14 @@ A modern and responsive e-commerce web application built using React. This front
   * Add/remove items from cart.
   * Real-time cart updates synced with backend.
 
+<img src="./images/checkout.png" alt="Checkout Page" width="500">
+
 * **Order Placement & Tracking**:
 
   * Checkout flow for placing orders.
   * Dedicated tracking page using route parameters.
+
+<img src="./images/orders.png" alt="Orders Page" width="500">
 
 * **Client-side Routing**:
 
@@ -50,6 +55,8 @@ A modern and responsive e-commerce web application built using React. This front
 
   * Clean layout with CSS.
   * Structured rendering using `.map()` and conditional logic.
+
+<img src="./images/tracking.png" alt="Tracking Page" width="500">
 
 ---
 
@@ -118,7 +125,7 @@ A modern and responsive e-commerce web application built using React. This front
 
 ## Deployed Application
 
-Live frontend: https://your-frontend-link.vercel.app
+Live frontend: https://shopkart-frontend-penv.onrender.com
 
 > Note: Backend is hosted on a free tier and may experience cold starts (~30–60 seconds on first request).
 
