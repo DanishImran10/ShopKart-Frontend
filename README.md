@@ -1,4 +1,4 @@
-<img width="1354" height="605" alt="image" src="https://github.com/user-attachments/assets/ce1f86dc-1e39-4044-a5cf-661dea01f115" /># ShopKart Frontend
+# ShopKart Frontend
 
 A modern and responsive e-commerce web application built using React. This frontend serves as the user interface for browsing products, managing a cart, placing orders, and tracking deliveries in real time through API integration with a backend service.
 
