@@ -6,13 +6,20 @@ function HomePage(props) {
     return (
         <>
             <TopBar cart={props.cart} />
-            <div className="home-page">
-                <div className="products-grid">
-                    {props.products.map((product) => 
-                    <Product key={product._id} product={product} loadCart={props.loadCart} />
-                )}
-                </div>
-            </div>
+
+            {
+                props.products.length !== 0 ? (
+                    <div className="home-page">
+                        <div className="products-grid">
+                            {props.products.map((product) => 
+                            <Product key={product._id} product={product} loadCart={props.loadCart} />
+                        )}
+                        </div>
+                    </div>
+                ) :
+
+                <div className="loading-spinner"></div>
+            }
         </>
     )
 }

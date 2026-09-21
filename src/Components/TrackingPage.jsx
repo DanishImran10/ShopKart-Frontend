@@ -7,7 +7,16 @@ function TrackingPage(props) {
     const { orderId, productId } = useParams()
 
     const order = props.orders.find(order => order._id === orderId)
+
+    if (!order) {
+        return <div className="loading-spinner"></div>
+    }
+
     const productDetails = order.products.find(product => product.product._id === productId)
+
+    if (!productDetails) {
+        return <div className="loading-spinner">Product not found.</div>
+    }
 
     const currentTime = Date.now();
 

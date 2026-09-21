@@ -3,9 +3,11 @@ import { displayPrice } from "../utils/displayPrice.js"
 import axios from "axios"
 import BASE_URL from "../BaseUrl.js"
 import { useNavigate } from "react-router"
+import { useState } from "react"
 
 function PaymentSummary(props) {
     const navigate = useNavigate()
+    const [isPlacingOrder, setIsPlacingOrder] = useState(false);
 
     function calculatePayment() {
         let itemCost = 0, shippingCost = 0
@@ -25,9 +27,10 @@ function PaymentSummary(props) {
     }
 
     async function placeOrder() {
-        if (props.cart.length === 0)
+        if (props.cart.length === 0 || isPlacingOrder)
             return
 
+        setIsPlacingOrder(true);
         const order = {
             orderTimeMs: Date.now(),
             totalCostCents: payment.totalCost,
@@ -47,10 +50,12 @@ function PaymentSummary(props) {
         }
 
         await axios.post(`${BASE_URL}/api/orders`, order)
+        
+        setIsPlacingOrder(false);
+        navigate("/orders")
+        
         await props.loadCart()
         await props.loadOrders()
-
-        navigate("/orders")
     }
 
     if (props.deliveryOptions.length === 0)
